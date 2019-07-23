@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>What can javascript</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modalstyle.css">
+    <!-- REACT DEVELOPMENT -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- JQUERY DEVELOPMENT -->
+
+
+
+</head>
+
+<body>
+    <!-- HEADER -->
+    <!-- ========================================= -->
+    <div class="header">
+        <header>
+            <h1>SKLEARN INTERFACE</h1>
+        </header>
+    </div>
+    <!-- ========================================= -->
+
+    <!-- MENU -->
+    <!-- ========================================= -->
+    <div class="menu-container">
+        <ul>
+            <li>
+                <a href="http://127.0.0.1:52052/Javascripts/client/index.html">
+                    Anasayfa
+                </a></li>
+            <li>Hakkında</li>
+            <li>Hesap</li>
+        </ul>
+    </div>
+    <!-- ========================================= -->
+
+    <div class="main-frame-container">
+        <!-- DRAG-DROP-SPOT -->
+        <!-- ========================================= -->
+
+        <div class="item-frame">
+            <h2>Items</h2>
+            <div id="ml-item1" class="ml-item div-transform parent" id="dataset">
+                <p class="text-transform"> dataset</p>
+            </div>
+            <div class="ml-item div-transform parent">
+                <p class="text-transform"> model</p>
+            </div>
+            <div class="ml-item div-transform parent">
+                <p class="text-transform"> validation</p>
+            </div>
+            <div class="ml-item div-transform parent">
+                <p class="text-transform"> visualization</p>
+            </div>
+        </div>
+        <div class="main-frame">
+        </div>
+
+        <!-- ========================================= -->
+        <div class="metric-container">
+            <h2 class="metric-header">
+                METRICS
+            </h2>
+
+        </div>
+    </div>
+    <!-- ========================================= -->
+    <!--The Modal -->
+    <div id="ml-modal" class="modal">
+        <!--Modal Content -->
+        <div class="modal-content">
+            <div class="modal-header" style="top: 0;">
+                <span class="modal-close">&times;</span>
+                <h2>Modal Header</h2>
+            </div>
+            <div class="modal-body">
+
+                <div>
+                    <div style="display: inline-block; border: 1px solid gray; width: 19%; height: 50px;"></div>
+                    <div style="display: inline-block;  border: 1px solid gray; height: 30px;width: 79%; top: 0px;"></div>
+                </div>
+
+
+                <p>Some text in the Modal Body</p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+            <div class="modal-footer">
+                <div style="width: 30%; display: inline-block;"></div>
+                <div style="display: inline-block; width: 30%;">
+                    <button>SAVE</button>
+                </div>
+                <div style="display: inline-block; width: 30%;">
+                    <button onclick="delete_item">DELETE ITEM</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- ========================================= -->
+
+
+    <!-- FOOTER -->
+    <!-- ========================================= -->
+
+    <div class="footer">
+        <h2>by Oğuzhan ÇETİNKAYA</h2>
+    </div>
+
+    <!-- ========================================= -->
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+
+    <script src="modal.js"></script>
+    <script>
+        $(function() {
+            var ml_item_trans;
+            $(".parent").draggable({
+                appendTo: ".main-frame",
+                cursor: "move",
+                helper: "clone",
+                revert: "invalid",
+            });
+
+            $(".main-frame").droppable({
+                tolerance: "intersect",
+                accept: " .child, .parent",
+                activeClass: "ui-state-default",
+                hoverClass: "ui-state-hover",
+                drop: function(event, ui) {
+                    if ($(ui.draggable).hasClass("parent")) {
+                        var new_ml_item = $(ui.helper).clone();
+                        new_ml_item.removeClass("parent");
+                        new_ml_item.draggable({
+                            appendTo: ".main-frame",
+                            cursor: "move",
+                            revert: "invalid",
+                        });
+                        new_ml_item.addClass("child");
+                        new_ml_item.addClass("ml-item")
+
+                        new_ml_item.click(function() {
+                            $('.modal').css('display', 'block');
+                        })
+
+                        $(this).append(new_ml_item);
+                    }
+                    if ($(ui.className) == "child") {
+                        $(this).append(ui.draggable);
+                    }
+
+
+                }
+            });
+
+            // Get the modal
+            var modal = document.getElementById('ml-modal');
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("tikla");
+
+            // Get the <span> element that closes the modal
+            var spans = document.getElementsByClassName("modal-close")[0];
+
+            // When the user clicks on the button, open the modal
+            $('.child').on('draggable', function() {
+                alert("deneme");
+            });
+            $('.child').click(function(event, ui) {
+                console.assert(true, $(ui))
+                ml_item_trans = $('child');
+                modal.style.display = "block";
+            });
+
+            // When the user clicks on <span> (x), close the modal
+            spans.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            delete_item = function() {
+                ml_item_trans.remove(ml_item_trans);
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+
+        });
+
+    </script>
+
+</body>
+
+</html>
