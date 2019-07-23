@@ -64,11 +64,16 @@
 /* Modal Footer */
 .modal-footer {
   padding: 2px 16px;
-  background-color: skyblue;
-  color: white;
+    background-color: skyblue;
+    color: white;
+    height: 30px;
 }
 
-
+.modal-button{
+    display: inline-block;
+    padding: 2px;
+    float: right;
+}
 
 /* Add Animation */
 @keyframes animatetop {

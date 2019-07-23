@@ -13,8 +13,6 @@
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
     <!-- JQUERY DEVELOPMENT -->
 
-
-
 </head>
 
 <body>
@@ -22,7 +20,9 @@
     <!-- ========================================= -->
     <div class="header">
         <header>
-            <h1>SKLEARN INTERFACE</h1>
+            <h1 style="margin: 0px;padding: 5px;">
+                SKLEARN INTERFACE
+            </h1>
         </header>
     </div>
     <!-- ========================================= -->
@@ -30,7 +30,7 @@
     <!-- MENU -->
     <!-- ========================================= -->
     <div class="menu-container">
-        <ul>
+        <ul style="margin-top: 0px;">
             <li>
                 <a href="http://127.0.0.1:52052/Javascripts/sklearn-website/client/index.html">
                     Anasayfa
@@ -46,18 +46,18 @@
         <!-- ========================================= -->
 
         <div class="item-frame">
-            <h2>Items</h2>
-            <div id="ml-item1" class="ml-item div-transform parent" id="dataset">
-                <p class="text-transform"> dataset</p>
+            <h2>ITEMS</h2>
+            <div id="dataset-item" class="ml-item parent ">
+                <p class="vertical-center"> dataset</p>
             </div>
-            <div class="ml-item div-transform parent">
-                <p class="text-transform"> model</p>
+            <div class="ml-item parent">
+                <p class="vertical-center">model</p>
             </div>
-            <div class="ml-item div-transform parent">
-                <p class="text-transform"> validation</p>
+            <div class="ml-item  parent">
+                <p class="vertical-center">validation</p>
             </div>
-            <div class="ml-item div-transform parent">
-                <p class="text-transform"> visualization</p>
+            <div class="ml-item parent">
+                <p class="vertical-center">visualization</p>
             </div>
         </div>
         <div class="main-frame">
@@ -92,12 +92,12 @@
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
             </div>
             <div class="modal-footer">
-                <div style="width: 30%; display: inline-block;"></div>
-                <div style="display: inline-block; width: 30%;">
-                    <button>SAVE</button>
+                <div class="modal-button">
+                    <button id="delete-item">DELETE ITEM</button>
                 </div>
-                <div style="display: inline-block; width: 30%;">
-                    <button id="delete_item">DELETE ITEM</button>
+
+                <div class="modal-button">
+                    <button id="save-item">SAVE</button>
                 </div>
             </div>
         </div>
@@ -146,9 +146,10 @@
                             appendTo: ".main-frame",
                             cursor: "move",
                             revert: "invalid",
+                            containment: 'parent',
                         });
                         new_ml_item.addClass("child");
-                        new_ml_item.addClass("ml-item")
+                        new_ml_item.addClass("ml-item");
 
                         new_ml_item.click(function() {
                             $('.modal').css('display', 'block');
@@ -175,9 +176,14 @@
                 modal.style.display = "none";
             }
             //Delete item if click the 'delete item' button
-            $('#delete_item').click(function() {
-                modal.style.display="none";
+            $('#delete-item').click(function() {
+                modal.style.display = "none";
                 ml_item_current.remove();
+            });
+
+            $('#save-item').click(function() {
+                modal.style.display = "none";
+                alert("Kaydedildi");
             });
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {

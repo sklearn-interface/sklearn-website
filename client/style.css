@@ -41,7 +41,7 @@
 .item-frame {
     width: 20%;
     float: left;
-    
+
     border: 1px solid gray;
     height: 600px;
     display: inline-block;
@@ -52,7 +52,7 @@
 .main-frame {
     width: 49%;
     height: 1000px;
-    
+
     border: 1px solid gray;
     float: left;
     display: inline-block;
@@ -71,6 +71,9 @@
 li {
     display: inline-block;
     width: 100px;
+    height: 50px;
+    padding: 15px;
+    text-align: center;
 }
 
 h2 {
@@ -80,10 +83,7 @@ h2 {
     align-content: flex-start;
 }
 
-
-
-
-.div-transform {
+/*.div-transform {
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -o-transform: rotate(45deg);
@@ -99,17 +99,26 @@ h2 {
     transform: rotate(-45deg);
 
 }
+*/
 
 .ml-item {
     border: 1px solid blue;
     padding: 1px;
-    margin: 12px;
-    width: 50px;
-    height: 50px;
+    margin: 5px;
+    width: 75px;
+    height: 75px;
     display: inline-block;
-    align-items: center;
     background-color: powderblue;
+    border-radius: 50%;
+    text-align: center;
 }
+
+.vertical-center {
+    padding-top: 20%;
+    top: 0%;
+}
+
+.ml-item-text {}
 
 .parent {
     cursor: pointer;
