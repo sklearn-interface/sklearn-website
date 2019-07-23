@@ -32,7 +32,7 @@
     <div class="menu-container">
         <ul>
             <li>
-                <a href="http://127.0.0.1:52052/Javascripts/client/index.html">
+                <a href="http://127.0.0.1:52052/Javascripts/sklearn-website/client/index.html">
                     Anasayfa
                 </a></li>
             <li>Hakkında</li>
@@ -97,7 +97,7 @@
                     <button>SAVE</button>
                 </div>
                 <div style="display: inline-block; width: 30%;">
-                    <button onclick="delete_item">DELETE ITEM</span>
+                    <button id="delete_item">DELETE ITEM</button>
                 </div>
             </div>
         </div>
@@ -125,7 +125,7 @@
     <script src="modal.js"></script>
     <script>
         $(function() {
-            var ml_item_trans;
+            var ml_item_current;
             $(".parent").draggable({
                 appendTo: ".main-frame",
                 cursor: "move",
@@ -152,6 +152,7 @@
 
                         new_ml_item.click(function() {
                             $('.modal').css('display', 'block');
+                            ml_item_current = new_ml_item;
                         })
 
                         $(this).append(new_ml_item);
@@ -166,32 +167,18 @@
 
             // Get the modal
             var modal = document.getElementById('ml-modal');
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("tikla");
-
             // Get the <span> element that closes the modal
             var spans = document.getElementsByClassName("modal-close")[0];
-
-            // When the user clicks on the button, open the modal
-            $('.child').on('draggable', function() {
-                alert("deneme");
-            });
-            $('.child').click(function(event, ui) {
-                console.assert(true, $(ui))
-                ml_item_trans = $('child');
-                modal.style.display = "block";
-            });
 
             // When the user clicks on <span> (x), close the modal
             spans.onclick = function() {
                 modal.style.display = "none";
             }
-
-            delete_item = function() {
-                ml_item_trans.remove(ml_item_trans);
-            }
-
+            //Delete item if click the 'delete item' button
+            $('#delete_item').click(function() {
+                modal.style.display="none";
+                ml_item_current.remove();
+            });
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {
                 if (event.target == modal) {
